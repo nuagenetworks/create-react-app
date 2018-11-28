@@ -55,13 +55,22 @@ module.exports = (resolve, rootDir, isEjecting) => {
         'config/jest/fileTransform.js'
       ),
     },
+    testPathIgnorePatterns: [
+      "<rootDir>[/\\\\](build|docs|node_modules|scripts)[/\\\\]",
+      "<rootDir>/src/lib/models",
+      "<rootDir>/src/lib/vspk",
+      "<rootDir>/src/lib/vis-graphs",
+      "<rootDir>/src/lib/test-utils",
+      "<rootDir>/src/lib/service",
+    ],
     transformIgnorePatterns: [
-      '[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$',
-      '^.+\\.module\\.(css|sass|scss)$',
+      "<rootDir>/node_modules/(?!@)",
+      "<rootDir>/src/node_modules/(?!@)"
     ],
     moduleNameMapper: {
       '^react-native$': 'react-native-web',
       '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy"
     },
     moduleFileExtensions: [...paths.moduleFileExtensions, 'node'].filter(
       ext => !ext.includes('mjs')
